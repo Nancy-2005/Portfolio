@@ -1,52 +1,44 @@
 import React from 'react';
-import {FaGithub} from "react-icons/fa";
-import {CgFileDocument} from "react-icons/cg";
 
-
-const  ProjectBox = ({projectPhoto, projectName}) => {
-  const desc = {
-    TindogDesc : "This website is a landing page of Tinder but for dogs. It is a responsive website which was made to understand Bootstrap. I also learned how to host my project on Github and then how to deploy that project using Github pages.",
-    TindogGithub : "https://github.com/DevanshSahni/tindog",
-    TindogWebsite : "https://devanshsahni.github.io/tindog/",
-
-    RogFreeDesc : "A website that shows you over seven specialized yoga postures for specific diseases or health problems. This was a group project made in a team of two for a 36-hour-long online hackathon named Hackodisha 2.0.",
-    RogFreeGithub : "https://github.com/DevanshSahni/Rog-Free",
-    RogFreeWebsite : "https://devanshsahni.github.io/Rog-Free/",
-
-    NewsletterDesc:"A newsletter signup site made using Mailchimp API where the signups can be monitored from the MailChimp account. This project was made to understand API integration, environment variables and vercel deployment.",
-    NewsletterGithub:"",
-    NewsletterWebsite:"https://newsletter-signup-teal.vercel.app/",
-    
-    WigglesDesc:"An innovative pet management web app enabling pet parents to create unique pet IDs, securely store and share vaccination records, and generate QR codes for pet profiles, enhancing safety.",
-    WigglesGithub:"https://github.com/DevanshSahni/Wiggles",
-    WigglesWebsite:"https://wiggles.vercel.app/",
-  }
-
-  let show ='';
-  if(desc[projectName + 'Github']===""){
-    show="none";
-  }
-    
+// ProjectBox Component: Renders individual project details
+const ProjectBox = ({ projectName, projectDesc }) => {
   return (
-    <div className='projectBox'> 
-        <img className='projectPhoto' src={projectPhoto} alt="Project display" /> 
-        <div>
-            <br />
-            <h3>{projectName}</h3>
-            <br />
-            {desc[projectName + 'Desc']}
-            <br />
-
-            <a style={{display:show}} href={desc[projectName + 'Github']} target='_blank'>
-              <button className='projectbtn'><FaGithub/> Github</button>
-            </a>
-
-            <a href={desc[projectName + 'Website']} target='_blank'>
-              <button className='projectbtn'><CgFileDocument/> Demo</button>
-            </a>
-        </div>
+    <div className="projectBox">
+      <h3>{projectName}</h3>
+      <p>{projectDesc}</p>
     </div>
-  )
-}
+  );
+};
 
-export default  ProjectBox
+// Projects Component: Renders the list of projects
+const Projects = () => {
+  const projects = [
+    {
+      projectName: 'Smart Vehicle Parking System',
+      projectDesc:
+        'Created a smart parking system that uses IoT devices and sensors to collect real-time data on parking lot occupancy and transmits this information to the cloud or local network.',
+    },
+    {
+      projectName: 'Simple Water Level Indicator',
+      projectDesc:
+        'Created a simple water level indicator circuit consisting of a transistor element and a buzzer which indicates the overflow of water or excessive water in the container. When the water reaches its maximum limit, it shows and blinks the LED with a buzzer sound to stop pouring or filling water.',
+    },
+  ];
+
+  return (
+    <div className="projectsSection">
+      <h2></h2>
+      <div className="projectsGrid">
+        {projects.map((project, index) => (
+          <ProjectBox
+            key={index}
+            projectName={project.projectName}
+            projectDesc={project.projectDesc}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Projects;
